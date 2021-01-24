@@ -1,0 +1,65 @@
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+    </div>
+</nav>
+<div>
+  <h3>Crear</h3>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <label>
+      VA_DESCRIPTION:
+      <input type="text" formControlName="VA_DESCRIPTION" >
+    </label>
+
+    <label>
+      VA_AMOUNT:
+      <input type="text" formControlName="VA_AMOUNT">
+    </label>
+      <button type="submit" class="btn btn-primary">Crear</button>
+  </form>
+</div>
+
+<div *ngIf="showUpdateForm">
+  <h3>Actualizar</h3>
+  <form [formGroup]="profileFormUpdate" (ngSubmit)="onSubmitUpdate()">
+    <label>
+      VA_DESCRIPTION:
+      <input type="text" formControlName="VA_DESCRIPTION" >
+    </label>
+
+    <label>
+      VA_AMOUNT:
+      <input type="text" formControlName="VA_AMOUNT">
+    </label>
+      <button type="submit" class="btn btn-primary">Actualizar</button>
+  </form>
+</div>
+
+
+<div class="table-responsive col-md-10 mt-4" style="margin-top:50px">
+  <table class="table mt-4">
+    <thead>
+        <tr>
+            <th scope="col">NU_ID</th>
+            <th scope="col">VA_DESCRIPTION</th>
+            <th scope="col">VA_AMOUNT</th>
+            <th scope="col">FE_CREATE_ON</th>
+            <th scope="col">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let lista of listar; index as i">
+            <th>{{lista.NU_ID}}</th>
+            <td>{{lista.VA_DESCRIPTION}}</td>
+            <td>{{lista.VA_AMOUNT}}</td>
+            <td>{{lista.FE_CREATE_ON}}</td>
+            <td>
+                <button type="button" class="btn btn-success" (click)="actualizar(lista.NU_ID)">Actualizar</button>
+                <button type="button" class="btn btn-danger" (click)="eliminar(i, lista.NU_ID)">Eliminar</button>
+            </td>
+        <tr>
+    </tbody>
+  </table>
+</div>
